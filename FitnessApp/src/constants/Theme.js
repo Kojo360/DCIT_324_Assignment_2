@@ -1,11 +1,4 @@
-import { Dimensions } from 'react-native';
-
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
-
-export const scaleWidth = (px) => (SCREEN_WIDTH / 390) * px;
-export const scaleHeight = (px) => (SCREEN_HEIGHT / 844) * px;
-
-export const COLORS = {
+﻿export const COLORS = {
   primary: '#FF5263',
   secondaryBg: '#FFF0F2',
   background: '#F9F9F9',
@@ -16,8 +9,7 @@ export const COLORS = {
 };
 
 export const LAYOUT = {
-  paddingHorizontal: scaleWidth(24),
+  paddingHorizontal: 24,
   baseRadius: 20,
-  cardRadius: 24,
-  pillRadius: 30,
+  largeRadius: 30,
 };

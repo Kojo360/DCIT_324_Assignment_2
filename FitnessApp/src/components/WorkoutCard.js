@@ -1,97 +1,41 @@
-import React, { useState } from 'react';
-import { Image, Text, StyleSheet, TouchableOpacity, View } from 'react-native';
+﻿import React, { useState } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-import { COLORS, LAYOUT } from '../constants/Theme';
+import { COLORS } from '../constants/Theme';
 
-export default function WorkoutCard({ title, duration, calories, imageSource, onPress }) {
+export default function WorkoutCard({ image, title, duration, calories, onPress }) {
   const [isFavourite, setIsFavourite] = useState(false);
 
   return (
-    <TouchableOpacity style={styles.cardContainer} onPress={onPress} activeOpacity={0.85}>
-      <View style={styles.graphicBox}>
-        <Image source={imageSource} style={styles.graphicImage} resizeMode="contain" />
+    <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.85}>
+      <View style={styles.imageContainer}>
+        <Image source={image} style={styles.image} resizeMode="contain" />
       </View>
-
-      <View style={styles.metaDataStack}>
-        <Text style={styles.cardHeading} numberOfLines={1}>
-          {title}
-        </Text>
-        <Text style={styles.cardSubheading}>{duration}</Text>
-        <Text style={styles.caloriesLabel}>{calories}</Text>
+      <View style={styles.details}>
+        <Text style={styles.title} numberOfLines={1}>{title}</Text>
+        <Text style={styles.duration}>{duration}</Text>
+        <Text style={styles.calories}>{calories}</Text>
       </View>
-
       <TouchableOpacity
-        style={styles.favoriteBadge}
+        accessibilityLabel={`Toggle favourite for ${title}`}
+        style={styles.favouriteButton}
         onPress={() => setIsFavourite(!isFavourite)}
         hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
         activeOpacity={0.7}>
-        <Text style={[styles.favoriteGlyph, isFavourite && styles.favoriteGlyphActive]}>
-          {isFavourite ? '♥' : '♡'}
-        </Text>
+        <Ionicons name={isFavourite ? 'heart' : 'heart-outline'} size={22} color={isFavourite ? COLORS.primary : COLORS.textMuted} />
       </TouchableOpacity>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    flexDirection: 'row',
-    backgroundColor: COLORS.cardBg,
-    borderRadius: LAYOUT.cardRadius,
-    padding: 14,
-    marginBottom: 16,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.03,
-    shadowRadius: 12,
-    elevation: 3,
-  },
-  graphicBox: {
-    width: 75,
-    height: 75,
-    backgroundColor: COLORS.secondaryBg,
-    borderRadius: 18,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  graphicImage: {
-    width: 48,
-    height: 48,
-  },
-  metaDataStack: {
-    flex: 1,
-    marginLeft: 16,
-    justifyContent: 'center',
-  },
-  cardHeading: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: COLORS.textDark,
-    marginBottom: 4,
-  },
-  cardSubheading: {
-    fontSize: 13,
-    color: COLORS.textMuted,
-    fontWeight: '500',
-    marginBottom: 2,
-  },
-  caloriesLabel: {
-    fontSize: 12,
-    color: COLORS.primary,
-    fontWeight: '600',
-  },
-  favoriteBadge: {
-    padding: 10,
-    backgroundColor: COLORS.background,
-    borderRadius: 12,
-  },
-  favoriteGlyph: {
-    fontSize: 20,
-    lineHeight: 22,
-    color: COLORS.textMuted,
-  },
-  favoriteGlyphActive: {
-    color: COLORS.primary,
-  },
+  card: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.cardBg, borderRadius: 24, padding: 14, marginBottom: 16, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.03, shadowRadius: 12, elevation: 3 },
+  imageContainer: { width: 75, height: 75, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: COLORS.secondaryBg },
+  image: { width: 48, height: 48 },
+  details: { flex: 1, marginLeft: 16, justifyContent: 'center' },
+  title: { color: COLORS.textDark, fontSize: 16, fontWeight: '700', marginBottom: 4 },
+  duration: { color: COLORS.textMuted, fontSize: 13, fontWeight: '500', marginBottom: 2 },
+  calories: { color: COLORS.primary, fontSize: 12, fontWeight: '600' },
+  favouriteButton: { padding: 10, borderRadius: 12, backgroundColor: COLORS.background },
 });
