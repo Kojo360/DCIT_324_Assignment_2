@@ -1,56 +1,67 @@
-# Welcome to your Expo app 👋
+# Fitness App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A two-screen fitness application built with React Native, Expo, and React Navigation. It runs on the web, Android, and iOS from the same JavaScript codebase.
 
-## Get started
+## Requirements
 
-1. Install dependencies
+- Node.js 22.13 or later
+- npm
+- Expo Go on a physical Android or iOS device (optional)
 
-   ```bash
-   npm install
-   ```
+## Install
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+From the `FitnessApp` directory, install dependencies once:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Run on the web
 
-### Other setup steps
+Start the web development server:
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```bash
+npm run web
+```
 
-## Learn more
+Expo prints a local URL in the terminal, normally `http://localhost:8081`. Open that address in a browser.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Run on Android
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Start Expo and open Android:
 
-## Join the community
+```bash
+npm run android
+```
 
-Join our community of developers creating universal apps.
+This requires an Android emulator running through Android Studio. To run on a physical Android device instead, start the general Expo server and scan the QR code using Expo Go:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npm start
+```
+
+## Run on iOS
+
+Start Expo and open iOS:
+
+```bash
+npm run ios
+```
+
+The iOS simulator requires macOS and Xcode. On an iPhone, run `npm start` and scan the QR code using Expo Go.
+
+## Useful commands
+
+```bash
+npm start       # Start Expo and choose a platform from the terminal
+npm run web     # Open the web build
+npm run android # Open an Android emulator
+npm run ios     # Open the iOS simulator (macOS only)
+```
+
+## App flow
+
+1. Choose a category capsule on the workout list.
+2. Tap a workout card to open its details.
+3. Tap the heart icon to favourite that individual workout.
+4. Tap **Start Workout** to toggle its completion state.
